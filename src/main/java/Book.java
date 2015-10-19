@@ -19,17 +19,9 @@ public class Book {
         if (books.size() > 1) {
             for (int i = 0; i < books.size(); i++) {
                 for (int j = 0; j < books.size() - 1 - i; j++) {
-                    int compareDate = books.get(j).publishDate.compareTo(books.get(j + 1).publishDate);
-                    int compareName = books.get(j).name.compareTo(books.get(j + 1).name);
-                    int compareAuthor = books.get(j).authorName.compareTo(books.get(j + 1).authorName);
-                    if (compareDate == 1) {
-                        swapBooks(books, j);
-                    } else if (compareDate == 0 && compareName == 1) {
-                        swapBooks(books, j);
-                    } else if (compareDate == 0 && compareAuthor == 1) {
+                    if (books.get(j).compareTo(books.get(j + 1)) == 1) {
                         swapBooks(books, j);
                     }
-                    System.out.println(compareDate);
                 }
             }
         }
@@ -41,9 +33,19 @@ public class Book {
         books.set(i + 1, tmp);
     }
 
+    public int compareTo(Book anotherBook) {
+        int compareDate = publishDate.compareTo(anotherBook.publishDate);
+        int compareName = name.compareTo(anotherBook.name);
+        int compareAuthor = authorName.compareTo(anotherBook.authorName);
+        if (compareDate != 0) {
+            return compareDate;
+        } else if (compareName != 0) {
+            return compareName;
+        } else return compareAuthor;
+    }
+
     @Override
     public String toString() {
-        // Вывод по правилам списка использованой литературы.
-        return authorName + " - " + name + " - " + simpleDateFormat.format(publishDate);
+        return name + " " + authorName + " - " + simpleDateFormat.format(publishDate) + ".";
     }
 }
