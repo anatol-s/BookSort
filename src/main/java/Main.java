@@ -4,6 +4,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
+        start();
+    }
+
+    private static void start() throws ParseException {
         List<Book> books = new LinkedList<Book>();
         books.add(new Book("Java 8. Полное руководство, 9-е издание.", "Герберт Шилдт.", 2015));
         books.add(new Book("Java 8. Полное руководство, 9-е издание.", "Герберт Шилдт.", 2014));
